@@ -1,0 +1,69 @@
+@extends('layouts.member')
+@section('content')
+    <div class="cotainer mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Your Saved Admit Cards</h3>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>প্রতিষ্ঠানের নাম</th>
+                            <th>পদের নাম</th>
+                            <th>আডমিট কার্ড</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($admitCards as $admitCard)
+                            <tr>
+                                <td>{{ $admitCard->institute_name }}</td>
+                                <td>{{ $admitCard->post_name }}</td>
+                                <td><a href="{{ asset($admitCard->admit_card_image) }}" class="btn btn-success btn-sm" download="{{ asset($admitCard->admit_card_image) }}"><i class="fa-solid fa-download mr-5"></i>Download Now</a></td>
+                                <td>@includeIf('components.buttons.delete', ['url' => route('delete.admit.document',$admitCard->id)])</td>
+                            </tr>
+                        @empty
+                        @endforelse
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-4">
+                <div class="card p-3">
+                    <h4>Add Admit Card</h4>
+                    <form action="{{route('store.admit.document')}}" class="form" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group mb-2">
+                            <label for="institute-name" class="form-label">প্রতিষ্ঠানের নাম</label>
+                            <input type="text" class="form-control" name="institute_name" id="institute-name" value="{{old('institute_name')}}" required>
+                            @error('institute_name')
+                                <div class="alert alert-danger mt-2">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="post-name" class="form-label">পদের নাম</label>
+                            <input type="text" class="form-control" name="post_name" id="post-name" value="{{old('post_name')}}" required>
+                            @error('post_name')
+                                <div class="alert alert-danger mt-2">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
+                            <label for="admit-card-image" class="form-label">আডমিট কার্ড</label>
+                            <input type="file" class="form-control" name="admit_card_image" id="admit-card-image" value="{{old('admit_card_image')}}" accept="image/*" required>
+                            @error('admit_card_image')
+                                <div class="alert alert-danger mt-2">{{$message}}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-2">
+                            <button type="submit" class="btn theme-btn">Add<i class="fa-solid fa-plus ml-5"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('scripts')
+    @includeIf('components.alerts.delete')
+    @includeIf('components.alerts.success')
+    @includeIf('components.alerts.error')
+@endsection
