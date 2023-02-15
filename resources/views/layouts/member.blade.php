@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    @stack('css')
     <link rel="stylesheet" href="{{ asset('/assets/member/css/style.css') }}">
+
 </head>
 
 <body>
@@ -42,8 +44,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.0/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('/assets/member/lib/sweet-alert/sweetalert2@11.js') }}"></script>
+    @stack('scripts')
     <script src="{{ asset('/assets/member/js') }}/main.js"></script>
-    @yield('scripts')
 </body>
 
 </html>

@@ -67,7 +67,7 @@
         </div>
     </div>
 @endsection
-@section('scripts')
+@push('scripts')
     <script>
         $('#district').on('change', function() {
             let subjectId = $(this).val()
@@ -82,4 +82,4 @@
             })
         })
     </script>
-@endsection
+@endpush

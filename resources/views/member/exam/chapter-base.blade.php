@@ -48,7 +48,7 @@
         </ul>
     </div>
 @endsection
-@section('scripts')
+@push('scripts')
     <script>
         $(document).ready(function() {
             $('.subject-name').click(function() {
@@ -59,4 +59,4 @@
             })
         })
     </script>
-@endsection
+@endpush

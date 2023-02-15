@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Member;
 
 use App\Http\Controllers\Controller;
 use App\Models\Exam;
+use App\Models\Question;
 use App\Models\Subject;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,15 @@ class ExamController extends Controller
     }
     public function attemptExam(Request $request)
     {
-        dd($request->all());
+        // dd($request->answer);
+        $questions = 0;
+        foreach ($request->answer as $id => $answer)
+        {
+            Question::findOrfail($id);
+            $questions += 1;
+
+        }
+        dd($questions);
     }
     /**
      * Show the form for creating a new resource.
@@ -56,7 +65,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**

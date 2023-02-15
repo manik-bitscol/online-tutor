@@ -25,7 +25,7 @@
         </ul>
     </div>
 @endsection
-@section('scripts')
+@push('scripts')
     <script>
         $(document).ready(function() {
             $('.view-answer').click(function() {
@@ -33,4 +33,4 @@
             })
         })
     </script>
-@endsection
+@endpush
